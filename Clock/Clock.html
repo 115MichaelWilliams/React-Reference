@@ -30,7 +30,8 @@
           this.timeout = setTimeout(this.updateClock, 1000);
         }
 //updateClock(){} it can't be memberfunction of this class.
-//      so  this.setState()  function can't be recognized.  
+//Althouh it is acomplished but in the 'this.state' the  'this' object is Window and not class 'Clock'
+//      so  this.setState()  function can't be defined. and the Error is undef.  
 // this.updateClock.bind(this) then this function can be memberfunction of this class.
 //remember the array function => can be memberfunction
 
