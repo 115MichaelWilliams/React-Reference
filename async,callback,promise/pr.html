@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <p id="demo"></p>
+    </head>
+    <body>
+        <script>
+            function A(){
+                debugger;
+                console.log("A function")
+            }
+            function B(){
+                debugger;
+                console.log("B")
+            }
+            function getTime(onSuccess,onFail){
+                debugger;
+                console.log("getTime function")
+                let flag =false;
+                setInterval(() => {
+                    var did = !flag;
+                    if(did){
+                        var Time = new Date();
+                        onSuccess(Time);
+                        flag=false;
+                    }else {
+                        onFail('error');
+                    }
+                }, 2000);
+            }
+            getTime(
+                function(current){
+                    debugger;
+                    console.log('the current time is :'+ current);
+                },
+                function(error){
+                    debugger;
+                    console.log('error')
+                }
+            );
+            B();
+            A();
+        </script>
+    </body>
+</html>
