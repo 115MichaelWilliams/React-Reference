@@ -4,42 +4,43 @@
         <p id="demo"></p>
     </head>
     <body>
-        <script>
-            function A(){
-                debugger;
-                console.log("A function")
+       <script>
+        function getCurrentTime(onSuccess, onFail) {
+            // Get the current 'global' time from an API
+            debugger;
+            return setInterval(() => {
+                console.log("async")
+                debugger
+              // randomly decide if the date is retrieved or not
+              var didSucceed = Math.random() >= 0.5;
+                console.log(didSucceed);
+                 if (didSucceed) {
+                var currentTime = new Date();
+                   onSuccess(currentTime);
+                   } else {
+                     onFail('Unknown error');
+                 }
+            }, 2000);
             }
-            function B(){
-                debugger;
-                console.log("B")
-            }
-            function getTime(onSuccess,onFail){
-                debugger;
-                console.log("getTime function")
-                let flag =false;
-                setInterval(() => {
-                    var did = !flag;
-                    if(did){
-                        var Time = new Date();
-                        onSuccess(Time);
-                        flag=false;
-                    }else {
-                        onFail('error');
+            getCurrentTime(
+                function(currentTime)
+                    {
+
+                    getCurrentTime(
+                        function(newCurrentTime) {
+                         console.log('The real current time is: ' + currentTime);
+                         }, 
+                        function(nestedError) {
+                          console.log('There was an error fetching the second time'); }
+                      )
+
+                    }, 
+
+                 function(error) {
+                    console.log('There was an error fetching the time');
                     }
-                }, 2000);
-            }
-            getTime(
-                function(current){
-                    debugger;
-                    console.log('the current time is :'+ current);
-                },
-                function(error){
-                    debugger;
-                    console.log('error')
-                }
             );
-            B();
-            A();
+
         </script>
     </body>
 </html>
