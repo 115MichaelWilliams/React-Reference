@@ -1,0 +1,47 @@
+  
+<!DOCTYPE html>
+<html>
+    <head>
+        <p id="demo"></p>
+    </head>
+    <body>
+       <script>
+       function getCurrentTime() {
+           debugger
+           console.log("getCurrentTime function")
+        // Get the current 'global' time from an API using Promise
+        return new Promise((resolve, reject) => {
+            debugger 
+            console.log("promise")
+           setTimeout(function() {
+               debugger
+               console.log("setTimeout")
+           var didSucceed = 1;
+           console.log(didSucceed)
+           debugger
+          didSucceed ? resolve(new Date()) : reject('Error');
+          }, 2000);
+        })
+        }
+        function A(){
+            console.log("A");
+            debugger
+        }
+        function B(){console.log("B");
+        debugger        
+        }
+        A();
+         getCurrentTime()
+          .then(current => {
+              debugger
+              console.log(current)
+              getCurrentTime();console.log(current)})
+           .then(current => {
+            console.log('The current time is: ' + current);
+         return true;
+          })
+          .catch(err => console.log('There was an error:' + err))
+          B();
+        </script>
+    </body>
+</html>
